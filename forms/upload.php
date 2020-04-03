@@ -9,10 +9,11 @@ $user = new login();
  if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
     $directorio = $_SERVER['DOCUMENT_ROOT'] . "/assets/upload/img/uploadimg/";
-    echo exec('whoami'); 
-    $archivo = $directorio . basename($_FILES['mp']["name"]);
+    /* echo exec('whoami');  */ /* muestra el usuario del servidor que tiene acceso a al php */
     
-    $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+    
+    $tipoArchivo = strtolower(pathinfo($_FILES['mp']["name"], PATHINFO_EXTENSION));
+    $archivo = $directorio . basename($user->getusercode()) . '.' . $tipoArchivo;
 
     $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
     
