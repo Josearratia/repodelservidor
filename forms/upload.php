@@ -8,14 +8,14 @@ $user = new login();
 
  if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
-    $directorio = "assets/upload/img/uploadimg/";
-
+    $directorio = $_SERVER['DOCUMENT_ROOT'] . "/assets/upload/img/uploadimg/";
+    echo exec('whoami'); 
     $archivo = $directorio . basename($_FILES['mp']["name"]);
     
     $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
     $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
-
+    
     if($isimg != false){
         $size = $_FILES["mp"]["size"];
 
@@ -35,7 +35,7 @@ $user = new login();
 
     }else {
         echo "Archivo no valido";
-    }
+    }   
 } else {
     include_once 'index.php';
 } 
