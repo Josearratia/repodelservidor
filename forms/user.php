@@ -134,6 +134,11 @@ class login extends DB
         }
     }
 
+    public function updateimg($imgname,$id){
+        $query = $this->connect()->prepare('UPDATE `usuarios` SET NombreFotoPF_usuario = :imgname WHERE idUsuario = :userid');
+        $query->execute(['imgname' => $imgname, 'userid' => $id]);
+    }
+
     public function userExists($user, $pass)
     {
         $md5pass = md5($pass);

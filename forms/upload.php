@@ -13,7 +13,9 @@ $user = new login();
     
     
     $tipoArchivo = strtolower(pathinfo($_FILES['mp']["name"], PATHINFO_EXTENSION));
-    $archivo = $directorio . basename($user->getusercode()) . '.' . $tipoArchivo;
+    $newnombre = basename($user->getusercode()) . '.' . $tipoArchivo;
+    echo $newnombre;
+    $archivo = $directorio . $newnombre;
 
     $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
     
@@ -25,6 +27,7 @@ $user = new login();
         }else {
             if($tipoArchivo == "jpg"){
                 if(move_uploaded_file($_FILES["mp"]["tmp_name"],$archivo)){
+                    $user->updateimg($newnombre,$user->getuserid());
                     echo "Archivo guardado";
                 }else{
                     echo "error al guardar el archivo";
@@ -41,3 +44,4 @@ $user = new login();
     include_once 'index.php';
 } 
     
+?>
