@@ -14,7 +14,7 @@ $user = new login();
     
     $tipoArchivo = strtolower(pathinfo($_FILES['mp']["name"], PATHINFO_EXTENSION));
     $newnombre = basename($user->getusercode()) . '.' . $tipoArchivo;
-    echo $newnombre;
+    /* echo $newnombre; */
     $archivo = $directorio . $newnombre;
 
     $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
